@@ -1,4 +1,4 @@
-var User= require('../mosels/user');
+var User= require('../models/user');
 
 //saving user to the database
 module.exports = function (router) {

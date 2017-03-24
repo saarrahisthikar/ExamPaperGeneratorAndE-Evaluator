@@ -7,16 +7,17 @@ var bodyParser = require('body-parser');
 var mongoose= require('mongoose');
 var morgan  = require('morgan');
 var router=express.Router();
-var appRoutes = require('./app/routes/api')(router);
+//var appRoutes = require('./app/routes/api')(router);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(__dirname+'src'))
-app.use('/api', appRoutes);
+//app.use(express.static(__dirname+'src/assets/vendor'));
+app.use(express.static('src'));
+//app.use('/api', appRoutes);
 
 //connecting to the database
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds139370.mlab.com:39370/exam-professor', function (err) {
+mongoose.connect('mongodb://saarrahisthikar@gmail.com:1987Rimaz@ds139370.mlab.com:39370/exam-professor', function (err) {
   if (err) {
     console.log('connection failed');
   } else {
@@ -25,13 +26,13 @@ mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds139370.mlab.com:39370/exam-p
 });
 
 //Adding styles
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname+'src/app/index.html'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname+'/src/index.html'));
 })
 
 //port listenning
 app.listen(port,function () {
-  console.log('App is runnning in the server');
+  console.log('App is running in the server - saarrah' +port);
 });
 
 /*
